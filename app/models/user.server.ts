@@ -9,6 +9,14 @@ export async function getUserById(id: User["id"]) {
   return prisma.user.findUnique({ where: { id } });
 }
 
+export async function getAttendees() {
+  const attendees = await prisma.rSVP.findMany({
+    select: {id:true, name:true, email: true, comments:true, createdAt:true, updatedAt:true}
+  })
+  console.log('THIS IS THE SERVER FUNCTION',attendees)
+  return attendees
+}
+
 export async function getUserByEmail(email: User["email"]) {
   return prisma.user.findUnique({ where: { email } });
 }
