@@ -14,9 +14,9 @@ interface AttendeesProps {
 
 export default function Attendees({ attendees }: AttendeesProps) {
   return (
-    <div className="w-3/4 mx-auto">
+    <div className="w-3/4 mx-auto py-12">
       <ul className="divide-y divide-gray-100">
-        <h2>Current RSVP List</h2>
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Current RSVP List</h2>
         {attendees.map((person) => (
           <li key={person.id} className="flex gap-x-4 py-5">
             <div className="flex min-w-0 gap-x-4">
