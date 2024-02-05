@@ -1,6 +1,8 @@
-import { MapPinIcon, CalendarDaysIcon, ChartBarIcon } from '@heroicons/react/20/solid'
+import { MapPinIcon, CalendarDaysIcon, ChartBarIcon, InformationCircleIcon } from '@heroicons/react/20/solid'
 
 import backgroundImageUrl from 'app/assets/field.webp'
+
+const guestCount = 3
 
 
 const cards = [
@@ -16,7 +18,7 @@ const cards = [
   },
   {
     name: 'Guest & Bird Count',
-    description: 'The amount of birds reserved will be dependent on dog/handler registration. The more participants we have, the more birds will be available. *Current Guest / Bird Count is: *Pheasants - 3 *Chukar - 6',
+    description: `The amount of birds reserved will be dependent on dog/handler registration. The more participants we have, the more birds will be available. *Current Guest / Bird Count is: *Handlers - ${guestCount} *Pheasants - ${guestCount * 2} *Chukar - ${guestCount * 4}`,
     icon: ChartBarIcon,
   },
 ]
