@@ -7,7 +7,7 @@ import heroAssetUrl from 'app/assets/hero.webp'
 import logoAssetUrl from 'app/assets/rr-logo.svg'
 
 const navigation = [
-  { name: 'Home', href: '#' },
+  { name: 'Home', href: '#home-section' },
   { name: 'About', href: '#card-section' },
   { name: 'Details', href: '#detail-section' },
   { name: 'Register', href: '#register-section' },
@@ -17,7 +17,7 @@ export default function HeroSection() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="bg-gray-900">
+    <div className="bg-gray-900" id="home-section">
       <header className="absolute inset-x-0 top-0 z-50">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
