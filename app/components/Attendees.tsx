@@ -1,3 +1,5 @@
+import DialogDemo from "./DeleteDialog";
+
 
 interface AttendeesProps {
   attendees: {
@@ -24,6 +26,7 @@ export default function Attendees({ attendees }: AttendeesProps) {
                 <p className="mt-1 truncate text-xs leading-5 text-gray-500">{person.email}</p>
                 <p className="mt-1 truncate text-xs leading-5 text-gray-500">registered on {person.createdAt.toString()}</p>
               </div>
+              <DialogDemo />
             </div>
           </li>
         ))}

@@ -13,7 +13,6 @@ export async function getAttendees() {
   const attendees = await prisma.rSVP.findMany({
     select: {id:true, name:true, email: true, comments:true, createdAt:true, updatedAt:true}
   })
-  console.log('THIS IS THE SERVER FUNCTION',attendees)
   return attendees
 }
 
@@ -78,4 +77,9 @@ export async function createRSVP(name: string, email: string, comments: string |
       comments,
     },
   });
+}
+
+export async function deleteRSVP(){
+  console.log(`delete successfully hit`)
+  return null
 }
