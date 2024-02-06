@@ -1,7 +1,10 @@
-import { MapPinIcon, CalendarDaysIcon, ChartBarIcon } from '@heroicons/react/20/solid';
+import { MapPinIcon, CalendarDaysIcon, ChartBarIcon, InformationCircleIcon } from '@heroicons/react/20/solid';
 import React from 'react';
 
 import backgroundImageUrl from 'app/assets/field.webp';
+
+import HoverCardDemo from './HoverCardComponent';
+
 
 interface DetailSectionProps {
   count: number;
@@ -42,18 +45,20 @@ const DetailsSection: React.FC<DetailSectionProps> = ({ count }) => { // Destruc
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
-          {cards.map((card) => (
-            <div key={card.name} className="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
-              <card.icon className="h-7 w-5 flex-none text-burn" aria-hidden="true" />
-              <div className="text-base leading-7">
-                <h3 className="font-semibold text-white">{card.name}</h3>
-                {card.description.split('*').map((line, index) => (
-                <p className="mt-2 text-gray-300" key={index}>{line}</p>
-                ))}
-                
-              </div>
-            </div>
-          ))}
+        {cards.map((card, cardIndex) => (
+  <div key={card.name} className="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
+    <card.icon className="h-7 w-5 flex-none text-burn" aria-hidden="true" />
+    <div className="text-base leading-7">
+      <h3 className="font-semibold text-white">{card.name}</h3>
+      {card.description.split('*').map((line, index) => (
+        <p className="mt-2 text-gray-300" key={index}>{line}</p>
+      ))}
+      {cardIndex === 2 ? <div className="tooltip">
+          <HoverCardDemo />
+        </div> : null}
+    </div>
+  </div>
+))}
         </div>
       </div>
     </div>
