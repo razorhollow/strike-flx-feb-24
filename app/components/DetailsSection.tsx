@@ -29,7 +29,7 @@ const DetailsSection: React.FC<DetailSectionProps> = ({ count }) => { // Destruc
     },
   ];
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+    <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" id='details-section'>
       <img
         src={backgroundImageUrl}
         alt="an empty field in winter"

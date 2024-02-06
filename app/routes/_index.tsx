@@ -1,4 +1,4 @@
-import { json } from '@remix-run/node';
+import { json, redirect, ActionFunctionArgs } from '@remix-run/node';
 import { Form, useLoaderData } from '@remix-run/react';
 import invariant from 'tiny-invariant';
 
@@ -7,7 +7,8 @@ import Attendees from "~/components/Attendees";
 import DetailsSection from "~/components/DetailsSection";
 import FooterComponent from '~/components/Footer';
 import HeroSection from "~/components/HeroSection";
-import { getAttendees } from '~/models/user.server';
+import { getAttendees, createRSVP } from '~/models/user.server';
+
 
 
 export const loader = async () => {
@@ -17,9 +18,26 @@ export const loader = async () => {
   return json({ attendees });
 };
 
+export const action = async ({ request }: ActionFunctionArgs) => {
+  const formData = await request.formData();
+  const name = formData.get("name") as string;
+  const email = formData.get("email") as string;
+  const comments = formData.get("comments") as string;
+  
+  try {
+    await createRSVP(name, email, comments || "");
+    return redirect("/?formSubmitted=true")
+    
+  } catch (error) {
+    // Handle potential errors, such as email uniqueness constraint violations
+    return json({ errorMessage: "An error occurred while submitting your RSVP. Please try again." }, { status: 500, headers: {
+      "X-Remix-Redirect-PreventScroll": "true"
+    } });
+  }
+};
+
 export default function IndexRoute() {
   const { attendees } = useLoaderData<typeof loader>();
-  console.log('LOADER DATA: ', attendees)
   return (
     <main>
       <HeroSection />
@@ -34,7 +52,7 @@ export default function IndexRoute() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <Form className="space-y-6" method="POST"  id="register-section">
+          <Form className="space-y-6" method="POST"  id="register-section" preventScrollReset={true}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
@@ -46,7 +64,7 @@ export default function IndexRoute() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -63,7 +81,7 @@ export default function IndexRoute() {
                   name="name"
                   type="text"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
               </div>
@@ -87,7 +105,7 @@ export default function IndexRoute() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-burn px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-burn px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Register
               </button>
@@ -107,6 +125,15 @@ export default function IndexRoute() {
         </div>
       </div>
       <FooterComponent />
+      <script dangerouslySetInnerHTML={{
+  __html: `
+    if (new URLSearchParams(window.location.search).has('formSubmitted')) {
+      document.getElementById('register-section').reset();
+      window.history.replaceState(null, '', window.location.pathname); // Remove query params
+    }
+  `,
+}} />
+
     </main>
   );
 }

@@ -1,4 +1,3 @@
-import { RSVP } from "@prisma/client"
 
 interface AttendeesProps {
   attendees: {

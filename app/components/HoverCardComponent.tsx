@@ -15,7 +15,7 @@ const HoverCardDemo = () => (
       >
         <div className="text-gray-900 font-medium">Bird Allocation</div>
         <p className="mt-2">
-          Each handler is initially allocated 2 pheasants and 4 chukar. These numbers are our starting point, and we're open to your input! If you have suggestions for different quantities, please share them in the comment section of the registration form.
+          Each handler is initially allocated 2 pheasants and 4 chukar. These numbers are our starting point, and we are open to your input! If you have suggestions for different quantities, please share them in the comment section of the registration form.
         </p>
         <p className="mt-2">
           <strong>Pricing:</strong> $20 per pheasant, $16 per chukar.

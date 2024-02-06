@@ -69,3 +69,13 @@ export async function verifyLogin(
 
   return userWithoutPassword;
 }
+
+export async function createRSVP(name: string, email: string, comments: string | null) {
+  return prisma.rSVP.create({
+    data: {
+      name,
+      email,
+      comments,
+    },
+  });
+}
