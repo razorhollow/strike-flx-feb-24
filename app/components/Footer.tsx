@@ -73,17 +73,13 @@ const navigation: Navigation = {
             ))}
           </nav>
           <div className="mt-10 flex justify-center space-x-10">
-            {navigation.social.map((item: NavItem) => (
-              <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
-                <span className="sr-only">{item.name}</span>
-                {item.icon ? (
-                  <span className="h-6 w-6">  
-                    {item.icon({})}
-                  </span>
-                ) : null}
-              </a>
-            ))}
-          </div>
+          {navigation.social.map((item) => (
+            <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
+              <span className="sr-only">{item.name}</span>
+              <item.icon className="h-6 w-6" aria-hidden="true" />
+            </a>
+          ))}
+        </div>
           <p className="mt-10 text-center text-xs leading-5 text-gray-500">
             &copy; 2024 Retriever Roadmap All rights reserved.
           </p>
