@@ -120,7 +120,7 @@ export default function IndexRoute() {
           </p>
         </div>
       </div>
-        <div className='w-1/2 pt-10'>
+        <div className='sm:w-5/6 sm:mx-auto md:w-1/2 pt-10'>
           <Attendees attendees={attendees}/>
         </div>
       </div>
