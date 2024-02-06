@@ -44,7 +44,7 @@ export default function IndexRoute() {
       <AboutSection />
       <DetailsSection count={attendees.length}/>
       <div className='flex justify-between w-full'>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex self-start min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Register For This Event
@@ -120,7 +120,7 @@ export default function IndexRoute() {
           </p>
         </div>
       </div>
-        <div className='w-1/2'>
+        <div className='w-1/2 pt-10'>
           <Attendees attendees={attendees}/>
         </div>
       </div>
