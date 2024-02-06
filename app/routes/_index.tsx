@@ -27,7 +27,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   
   try {
     await createRSVP(name, email, comments || "");
-    return redirect("/")
+    return redirect("/#guest-list")
     
   } catch (error) {
     // Handle potential errors, such as email uniqueness constraint violations
@@ -53,7 +53,7 @@ export default function IndexRoute() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <Form className="space-y-6" method="POST"  id="register-section" preventScrollReset={true}>
+          <Form className="space-y-6" method="POST"  id="register-section">
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
