@@ -79,7 +79,11 @@ export async function createRSVP(name: string, email: string, comments: string |
   });
 }
 
-export async function deleteRSVP(){
-  console.log(`delete successfully hit`)
-  return null
+export async function deleteRSVP({email}){
+  return prisma.rSVP.deleteMany({
+    where: { email }
+  })
+  
 }
+
+

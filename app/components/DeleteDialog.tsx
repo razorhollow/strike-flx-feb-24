@@ -1,13 +1,9 @@
 
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon, CrossCircledIcon } from '@radix-ui/react-icons';
-import { redirect } from '@remix-run/node';
-import { useFetcher, Form } from '@remix-run/react';
+import { useFetcher } from '@remix-run/react';
 import { useState } from 'react';
 
-import { deleteRSVP } from '~/models/user.server';
-
-const wait = () => new Promise((resolve) => setTimeout(resolve, 1000))
 
 export default function DeleteDialog() {
   const fetcher = useFetcher()
@@ -33,7 +29,7 @@ export default function DeleteDialog() {
           action='/resources/deletereservation' 
           onSubmit={handleSubmit}>
             <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">
-              Delete Reservation
+              Delete Reservation:
             </Dialog.Title>
             <Dialog.Description className="text-mauve11 mt-[10px] mb-5 text-[15px] leading-normal">
               Cancel Your reservation. Click confirm when you are done.
@@ -45,6 +41,7 @@ export default function DeleteDialog() {
                 <input
                   className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                   id="email"
+                  name='email'
                 />
               </fieldset>
             <div className="mt-[25px] flex justify-end">

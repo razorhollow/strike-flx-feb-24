@@ -23,7 +23,6 @@ export default function Attendees({ attendees }: AttendeesProps) {
             <div className="flex min-w-0 gap-x-4">
               <div className="min-w-0 ">
                 <p className="text-sm font-semibold leading-6 text-gray-900">{person.name}</p>
-                <p className="mt-1 truncate text-xs leading-5 text-gray-500">{person.email}</p>
                 <p className="mt-1 truncate text-xs leading-5 text-gray-500">registered on {person.createdAt.toString()}</p>
               </div>
               <DialogDemo />

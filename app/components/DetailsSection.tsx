@@ -1,4 +1,4 @@
-import { MapPinIcon, CalendarDaysIcon, ChartBarIcon, InformationCircleIcon } from '@heroicons/react/20/solid';
+import { MapPinIcon, CalendarDaysIcon, ChartBarIcon } from '@heroicons/react/20/solid';
 import React from 'react';
 
 import backgroundImageUrl from 'app/assets/field.webp';

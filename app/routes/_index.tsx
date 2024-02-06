@@ -26,7 +26,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   
   try {
     await createRSVP(name, email, comments || "");
-    return redirect("/?formSubmitted=true")
+    return redirect("/")
     
   } catch (error) {
     // Handle potential errors, such as email uniqueness constraint violations
