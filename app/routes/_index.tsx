@@ -21,7 +21,8 @@ export const loader = async () => {
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
   const name = formData.get("name") as string;
-  const email = formData.get("email") as string;
+  let email = formData.get("email") as string;
+  email = email.toLowerCase()
   const comments = formData.get("comments") as string;
   
   try {
