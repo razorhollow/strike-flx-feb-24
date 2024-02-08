@@ -43,19 +43,19 @@ export default function AboutSection() {
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {posts.map((post) => (
             <article key={post.id} className="flex flex-col items-start justify-between">
-              <h3 className='mt-2 text-lg leading-8 text-gray-600 mx-auto font-extrabold'>{post.title}</h3>
               <div className="relative">
                 <img
                   src={post.imageUrl}
                   alt=""
-                  className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2] object-center"
+                  className="sm:aspect-square lg:aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover"
                 />
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
               </div>
               <div className="max-w-xl">
                 <div className="mt-8 flex items-center gap-x-4 text-xs">
                 <div className="group relative">
-                  <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{post.description}</p>
+              <h3 className='mt-2 text-lg leading-8 text-gray-600 mx-auto font-extrabold'>{post.title}</h3>
+                  <p className="mt-5 text-sm leading-6 text-gray-600">{post.description}</p>
                 </div>
               </div>
             </div>
