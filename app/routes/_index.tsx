@@ -53,7 +53,7 @@ export default function IndexRoute() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <Form reloadDocument className="space-y-6" method="POST"  id="register-section">
+          <Form reloadDocument className="space-y-6" method="POST"  id="register-section" preventScrollReset={true}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
