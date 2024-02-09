@@ -20,7 +20,7 @@ const DetailsSection: React.FC<DetailSectionProps> = ({ count }) => { // Destruc
     },
     {
       name: 'Date and Time',
-      description: 'Training Will Take Place on Sunday, February 18th, 2024. Time is still TBD. Check back for updates. *DATE: 2/18/2024 *TIME: TBD',
+      description: 'Training Will Take Place on Sunday, February 18th, 2024 at 9:00 AM. Check back for updates. *DATE: 2/18/2024 *TIME: TBD',
       icon: CalendarDaysIcon,
     },
     {
