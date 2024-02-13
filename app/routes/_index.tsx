@@ -20,6 +20,7 @@ export const loader = async () => {
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
+  invariant(formData.get("name__confirm") === "", "Form not submitted properly")
   const name = formData.get("name") as string;
   let email = formData.get("email") as string;
   email = email.toLowerCase()
@@ -54,6 +55,10 @@ export default function IndexRoute() {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <Form reloadDocument className="space-y-6" method="POST"  id="register-section" preventScrollReset={true}>
+            <div style={{display: "none"}}>
+              <label htmlFor='name-input'>Please leave this field blank</label>
+              <input type="text" name="name__confirm" id='name-input'/>
+            </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
