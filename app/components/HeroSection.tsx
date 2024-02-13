@@ -8,8 +8,8 @@ import logoAssetUrl from 'app/assets/rr-logo.svg'
 
 const navigation = [
   { name: 'Home', href: '#home-section' },
-  { name: 'About', href: '#card-section' },
-  { name: 'Details', href: '#detail-section' },
+  { name: 'About', href: '#about-section' },
+  { name: 'Details', href: '#details-section' },
   { name: 'Register', href: '#register-section' },
 ]
 
@@ -61,7 +61,7 @@ export default function HeroSection() {
                 <span className="sr-only">Your Company</span>
                 <img
                   className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                  src={logoAssetUrl}
                   alt=""
                 />
               </Link>
@@ -82,6 +82,7 @@ export default function HeroSection() {
                       key={item.name}
                       to={item.href}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800"
+                      onClick={()=> setMobileMenuOpen(false)}
                     >
                       {item.name}
                     </Link>

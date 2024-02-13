@@ -3,7 +3,6 @@ import React from 'react';
 
 import backgroundImageUrl from 'app/assets/field.webp';
 
-import HoverCardDemo from './HoverCardComponent';
 import PopoverInfo from './PopoverInfo';
 
 
