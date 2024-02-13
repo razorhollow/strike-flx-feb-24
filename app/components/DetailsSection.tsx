@@ -24,7 +24,7 @@ const DetailsSection: React.FC<DetailSectionProps> = ({ count }) => { // Destruc
     },
     {
       name: 'Guest & Bird Count',
-      description: `The amount of birds reserved will be dependent on dog/handler registration. The more participants we have, the more birds will be available. *Current Guest / Bird Count is: *Handlers - ${count} *Pheasants - ${count * 2} *Chukar - ${count * 4}`,
+      description: `The amount of birds reserved will be dependent on dog/handler registration. The more participants we have, the more birds will be available. *Current Guest / Bird Count is: *Handlers - 5 *Pheasants - 9 *Chukar - 14`,
       icon: ChartBarIcon,
     },
   ];
