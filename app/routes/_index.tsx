@@ -57,7 +57,10 @@ export default function IndexRoute() {
           <Form reloadDocument className="space-y-6" method="POST"  id="register-section" preventScrollReset={true}>
             <div style={{display: "none"}}>
               <label htmlFor='name-input'>Please leave this field blank</label>
-              <input type="text" name="name__confirm" id='name-input'/>
+              <input type="text" name="name__confirm" id='name-input'
+              tabIndex={-1}
+              autoComplete='off'
+              />
             </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
