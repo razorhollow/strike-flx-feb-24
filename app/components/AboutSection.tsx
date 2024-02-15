@@ -42,7 +42,7 @@ export default function AboutSection() {
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {posts.map((post) => (
-            <article key={post.id} className="flex flex-col items-start justify-between">
+            <article key={post.id} className="flex flex-col items-start justify-start">
               <div className="relative">
                 <img
                   src={post.imageUrl}
@@ -54,7 +54,7 @@ export default function AboutSection() {
               <div className="max-w-xl">
                 <div className="mt-8 flex items-center gap-x-4 text-xs">
                 <div className="group relative">
-              <h3 className='mt-2 text-lg leading-8 text-gray-600 mx-auto font-extrabold'>{post.title}</h3>
+              <h3 className='mt-1 text-lg leading-8 text-gray-600 mx-auto font-extrabold'>{post.title}</h3>
                   <p className="mt-5 text-sm leading-6 text-gray-600">{post.description}</p>
                 </div>
               </div>
