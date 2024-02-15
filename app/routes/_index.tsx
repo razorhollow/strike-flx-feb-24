@@ -20,12 +20,12 @@ export const loader = async () => {
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
-  invariant(formData.get("name__confirm") === "", "Form not submitted properly")
+  invariant(formData.get("name_confirm") === "", "Form not submitted properly")
   const name = formData.get("name") as string;
   let email = formData.get("email") as string;
   email = email.toLowerCase()
   const comments = formData.get("comments") as string;
-  
+
   try {
     await createRSVP(name, email, comments || "");
     return redirect("/#guest-list")
@@ -55,9 +55,9 @@ export default function IndexRoute() {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <Form reloadDocument className="space-y-6" method="POST"  id="register-section" preventScrollReset={true}>
-            <div style={{display: "none"}}>
+            <div className='opacity-0 absolute top-0 left-0 h-0 w-0 -z-1'>
               <label htmlFor='name-input'>Please leave this field blank</label>
-              <input type="text" name="name__confirm" id='name-input'
+              <input type="text" name="name_confirm" id='name-input'
               tabIndex={-1}
               autoComplete='off'
               />
