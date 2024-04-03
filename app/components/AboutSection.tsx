@@ -1,3 +1,5 @@
+import groundsAssetUrl from 'app/assets/grounds.jpg'
+import waterfowlAssetUrl from 'app/assets/waterfowl.jpg'
 import flushAssetUrl from 'app/assets/flush.jpg'
 import pheasantAssetUrl from 'app/assets/pheasant.jpg'
 import retrieveAssetUrl from 'app/assets/retrieve.jpg'
@@ -5,25 +7,25 @@ import retrieveAssetUrl from 'app/assets/retrieve.jpg'
 const posts = [
   {
     id: 1,
-    title: 'Live Birds',
+    title: 'Exclusive Training Grounds',
     description:
-      "Experience realistic training with live birds. This session focuses on real-life scenarios, enhancing your retriever's hunting instincts and prey drive. Perfect for acclimating dogs to the excitement and unpredictability of live game.",
+      "Explore our 150-acre haven, a landscape boasting a variety of terrains including ponds, fields, and woods, tailored for every training stage",
     imageUrl:
-      `${pheasantAssetUrl}`,
+      `${groundsAssetUrl}`,
   },
   {
     id: 2,
-    title: 'Quartering and Flushing',
+    title: 'Waterfowl Retriever Training',
     description:
-      "Introduce the art of quartering and flushing with your retriever. This training emphasizes precise teamwork and communication between you and your dog, ensuring effective coverage of the terrain and the perfect flush.",
+      "Dive into our specialized waterfowl training with courses designed around our facility's ponds and water terrains for the ultimate retrieving experience",
     imageUrl:
-      `${flushAssetUrl}`,
+      `${waterfowlAssetUrl}`,
   },
   {
     id: 3,
-    title: 'Steadiness to Flush/Gun/Fall',
+    title: 'Upland Bird Dog Training',
     description:
-      "Develop your dog's steadiness amidst the chaos of the hunt. This crucial training ensures your retriever remains composed and obedient in response to a bird's flush, gunshot sounds, and falling game, essential for a successful hunting experience.",
+      "Practice upland hunting in our meticulously managed fields, offering the perfect mimicry of natural hunting scenarios to refine your dog's skills.",
     imageUrl:
       `${retrieveAssetUrl}`,
   },
@@ -35,9 +37,9 @@ export default function AboutSection() {
     <div className="bg-white py-24 sm:py-32" id="about-section">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Event Itinerary</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Train Smarter, Not Harder</h2>
           <p className="mt-2 text-lg leading-8 text-gray-600">
-            Our training plan for the day.
+            Get Started For Just $29/Month.
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
