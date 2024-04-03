@@ -3,6 +3,8 @@ import AboutSection from "~/components/AboutSection";
 import FooterComponent from '~/components/Footer';
 import HeroSection from "~/components/HeroSection";
 
+export const meta = () => [{ title: "STRIKE TEAM - FLX" }];
+
 export default function IndexRoute() {
   return (
     <main>
