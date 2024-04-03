@@ -3,7 +3,7 @@ import React from 'react';
 
 import backgroundImageUrl from 'app/assets/field.webp';
 
-import HoverCardDemo from './HoverCardComponent';
+import PopoverInfo from './PopoverInfo';
 
 
 interface DetailSectionProps {
@@ -19,12 +19,12 @@ const DetailsSection: React.FC<DetailSectionProps> = ({ count }) => { // Destruc
     },
     {
       name: 'Date and Time',
-      description: 'Training Will Take Place on Sunday, February 18th, 2024. Time is still TBD. Check back for updates. *DATE: 2/18/2024 *TIME: TBD',
+      description: 'Training Will Take Place on Sunday, February 18th, 2024 at 9:00 AM. Check back for updates. *DATE: 2/18/2024 *TIME: 9:00 AM',
       icon: CalendarDaysIcon,
     },
     {
       name: 'Guest & Bird Count',
-      description: `The amount of birds reserved will be dependent on dog/handler registration. The more participants we have, the more birds will be available. *Current Guest / Bird Count is: *Handlers - ${count} *Pheasants - ${count * 2} *Chukar - ${count * 4}`,
+      description: `The amount of birds reserved will be dependent on dog/handler registration. The more participants we have, the more birds will be available. *Current Guest / Bird Count is: *Handlers - 5 *Pheasants - 9 *Chukar - 14`,
       icon: ChartBarIcon,
     },
   ];
@@ -38,8 +38,8 @@ const DetailsSection: React.FC<DetailSectionProps> = ({ count }) => { // Destruc
       <div className='absolute inset-0 bg-dirt opacity-80 -z-10'></div>
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">Event Details</h2>
-          <h3 className='text-slate-200'>Join Us for an Unforgettable Upland Training Event</h3>
+          <h2 className="text-4xl font-bold tracking-tight text-white pb-2 sm:text-6xl">Event Details</h2>
+          <h3 className='text-burn'>Join Us for an Unforgettable Upland Training Event</h3>
           <p className="mt-6 text-lg leading-8 text-gray-300">
             Mark your calendars for February 18th, 2024. The precise timing of the event is to be determined. Stay updated for the exact schedule and bird count to make the most of this training opportunity.
           </p>
@@ -54,7 +54,7 @@ const DetailsSection: React.FC<DetailSectionProps> = ({ count }) => { // Destruc
         <p className="mt-2 text-gray-300" key={index}>{line}</p>
       ))}
       {cardIndex === 2 ? <div className="tooltip">
-          <HoverCardDemo />
+          <PopoverInfo />
         </div> : null}
     </div>
   </div>

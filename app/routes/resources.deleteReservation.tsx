@@ -6,7 +6,8 @@ export async function action({
   request,
 }: ActionFunctionArgs) {
   const body = await request.formData()
-  const email = body.get('email')
-  await deleteRSVP({ email })
+  const email = body.get('email') as string
+  const emailFormatted: string = email.toLowerCase()
+  await deleteRSVP(emailFormatted)
   return json({})
 }
