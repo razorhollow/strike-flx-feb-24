@@ -1,6 +1,6 @@
 import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from '@remix-run/react'
+import { Bars3Icon, UserIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Link, NavLink } from '@remix-run/react'
 import { useState } from 'react'
 
 import heroAssetUrl from 'app/assets/hero.webp'
@@ -13,7 +13,7 @@ const navigation = [
   { name: 'Register', href: '#register-section' },
 ]
 
-export default function HeroSection() {
+export default function HeroSection({ user }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -48,9 +48,15 @@ export default function HeroSection() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+            {user ? 
+            <NavLink to="dashboard">
+              <UserIcon className='size-6 text-white'/>
+            </NavLink>
+            :
             <Link to="login" className="text-sm font-semibold leading-6 text-white">
               Log in <span aria-hidden="true">&rarr;</span>
             </Link>
+            }
           </div>
         </nav>
         <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -89,12 +95,16 @@ export default function HeroSection() {
                   ))}
                 </div>
                 <div className="py-6">
-                  <Link
-                    to="login"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800"
-                  >
-                    Log in
-                  </Link>
+                  {user ? 
+                    <UserIcon />
+                  :
+                    <Link
+                      to="login"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800"
+                    >
+                      Log in
+                    </Link>
+                  }
                 </div>
               </div>
             </div>
