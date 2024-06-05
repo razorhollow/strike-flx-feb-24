@@ -49,3 +49,44 @@ model RSVP {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Event {
+  id         Int        @id @default(autoincrement())
+  title      String
+  date       DateTime
+  startTime  DateTime
+  endTime    DateTime
+  comments   Comment[]
+  locationId Int
+  location   Location   @relation(fields: [locationId], references: [id])
+  agenda     AgendaItem[]
+}
+
+model AgendaItem {
+  id      Int     @id @default(autoincrement())
+  title   String
+  eventId Int
+  event   Event   @relation(fields: [eventId], references: [id])
+}
+
+model Comment {
+  id      Int     @id @default(autoincrement())
+  name    String
+  content String
+  eventId Int
+  event   Event   @relation(fields: [eventId], references: [id])
+}
+
+model Location {
+  id      Int      @id @default(autoincrement())
+  name    String
+  address String
+  events  Event[]
+}
+
+// Default location (Team Headquarters)
+model TeamHeadquarters {
+  id      Int     @id @default(autoincrement())
+  name    String  @default("Team Headquarters")
+  address String  @default("5588 CR-11, Alpine, NY 14805")
+}

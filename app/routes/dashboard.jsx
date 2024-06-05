@@ -1,5 +1,5 @@
 import { json } from '@remix-run/node';
-import { Form, NavLink } from '@remix-run/react';
+import { Form, NavLink, Outlet } from '@remix-run/react';
 import { requireUserId } from '~/session.server'
 import { useUser } from "~/utils"
 
@@ -26,9 +26,11 @@ export default function Component() {
         </Form>
       </header>
       <main className='flex h-full bg-white'>
-        <div className="h-full w-80 border-r bg-gray-50">
-          <NavLink to="dashboard">Dashboard</NavLink>
+        <div className="h-full w-80 border-r bg-gray-50 flex flex-col">
+          <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink to="/dashboard/events">Events</NavLink>
         </div>
+        <Outlet />
       </main>
     </div>
   );
