@@ -51,34 +51,34 @@ model RSVP {
 }
 
 model Event {
-  id         Int        @id @default(autoincrement())
+  id         String        @id @default(cuid())
   title      String
   date       DateTime
   startTime  DateTime
   endTime    DateTime
   comments   Comment[]
-  locationId Int
+  locationId String
   location   Location   @relation(fields: [locationId], references: [id])
   agenda     AgendaItem[]
 }
 
 model AgendaItem {
-  id      Int     @id @default(autoincrement())
+  id      String     @id @default(cuid())
   title   String
-  eventId Int
+  eventId String
   event   Event   @relation(fields: [eventId], references: [id])
 }
 
 model Comment {
-  id      Int     @id @default(autoincrement())
+  id      String     @id @default(cuid())
   name    String
   content String
-  eventId Int
+  eventId String
   event   Event   @relation(fields: [eventId], references: [id])
 }
 
 model Location {
-  id      Int      @id @default(autoincrement())
+  id      String      @id @default(cuid())
   name    String
   address String
   events  Event[]
@@ -86,7 +86,7 @@ model Location {
 
 // Default location (Team Headquarters)
 model TeamHeadquarters {
-  id      Int     @id @default(autoincrement())
+  id      String     @id @default(cuid())
   name    String  @default("Team Headquarters")
   address String  @default("5588 CR-11, Alpine, NY 14805")
 }

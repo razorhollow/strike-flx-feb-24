@@ -29,7 +29,7 @@ export function createEvent({ title, date, startTime, endTime, locationId, agend
       startTime: new Date(`${date}T${startTime}:00`),
       endTime: new Date(`${date}T${endTime}:00`),
       location: {
-        connect: { id: parseInt(locationId) },
+        connect: { id: locationId },
       },
       agenda: {
         create: agendaItems.map((title) => ({ title })),

@@ -13,18 +13,19 @@ export const loader = async () => {
 
 export default function Component() {
   const { eventListItems } = useLoaderData()
-  console.log("events: ", eventListItems)
   return (
     <div>
       <ul>
       {eventListItems.map((event) => (
-      <li key={event.id}>
-        <EventCard event={event} />
-      </li>
+        <Link to={event.id} key={event.id}>
+          <li>
+            <EventCard event={event} />
+          </li>
+        </Link>
       ))}
       </ul>
       <Link to="/dashboard/new-event">
-        <PlusCircleIcon />
+        <PlusCircleIcon className="w-16 h-auto fixed right-10 bottom-10"/>
       </Link>
     </div>
   );

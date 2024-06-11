@@ -8,6 +8,9 @@ async function seed() {
   await prisma.user.deleteMany().catch(() => {
     // no worries if they don't exist yet
   });
+  await prisma.event.deleteMany().catch(() => {
+    // no worries if they don't exist yet
+  });
 
   const hashedPasswordRachel = await bcrypt.hash("racheliscool", 10);
   const hashedPasswordRob = await bcrypt.hash("lexilovesyou", 10);

@@ -1,6 +1,8 @@
 import { json, redirect } from "@remix-run/node";
-import { Form, useActionData, useLoaderData } from "@remix-run/react";
+import { useActionData, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
+import { Button } from '~/components/buttons'
+import { Form, Input, Textarea } from '~/components/forms'
 import { getAllLocations, createEvent, createLocation } from "~/models/event.server";
 
 export const loader = async () => {
@@ -58,24 +60,16 @@ export default function AddEvent() {
       <Form method="post">
         {actionData?.error ? <p style={{ color: "red" }}>{actionData.error}</p> : null}
         <div>
-          <label>
-            Title: <input type="text" name="title" />
-          </label>
+          <Input label="Title:" type="text" name="title" />
         </div>
         <div>
-          <label>
-            Date: <input type="date" name="date" />
-          </label>
+          <Input type="date" name="date" label="Date:" />
         </div>
         <div>
-          <label>
-            Start Time: <input type="time" name="startTime" />
-          </label>
+          <Input label="Start Time:" type="time" name="startTime" />
         </div>
         <div>
-          <label>
-            End Time: <input type="time" name="endTime" />
-          </label>
+          <Input label="End Time:" type="time" name="endTime" />
         </div>
         <div>
           <label>
@@ -110,14 +104,13 @@ export default function AddEvent() {
             </label>
           </div> : null}
         <div>
-          <label>
-            Agenda Items:
-            <textarea name="agendaItems" placeholder="Separate items with commas"></textarea>
-          </label>
+          <Textarea 
+            label="Agenda Items:" name="agendaItems" placeholder="Separate items with commas">
+          </Textarea>
         </div>
-        <button type="submit" name="intent" value="createEvent">
+        <Button type="submit" name="intent" value="createEvent">
           Add Event
-        </button>
+        </Button>
       </Form>
     </div>
   );
