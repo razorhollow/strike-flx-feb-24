@@ -18,6 +18,7 @@ export const loader = async ({ params }) => {
 
 export default function EventDetailsPage() {
   const data = useLoaderData()
+  console.log(data)
   const eventDate = dayjs(data.event.date).format('MMMM DD,[ ]YYYY')
   const startTime = dayjs(data.event.startTime).format('h:mm A')
   const endTime = dayjs(data.event.endTime).format('h:mm A')
@@ -40,6 +41,19 @@ export default function EventDetailsPage() {
           </div>
         </div>
       </div>
+        {data.event.agenda ? 
+          <ul id="agenda" className="border border-zinc-500 p-10 m-10">
+            <h3>Agenda For The Event</h3>
+            {data.event.agenda.map((agendaItem)=>
+              <li key={agendaItem.id}>
+                {agendaItem.title}
+              </li>
+            )}
+          </ul>
+        :
+        null
+  }
+      
     </main>
   )
 }
