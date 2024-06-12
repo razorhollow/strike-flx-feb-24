@@ -5,7 +5,8 @@ import { MapPinIcon, CalendarIcon } from "@heroicons/react/20/solid"
 import dayjs from "dayjs"
 
 import EventFeedComponent from "../components/EventFeed"
-import { getEvent } from "../models/event.server"
+import { getEvent, createComment, getAllComments } from "../models/event.server"
+import { requireUserId } from "~/session.server"
 
 export const loader = async ({ params }) => {
   invariant(params.eventId, "Event ID not found")
@@ -14,15 +15,27 @@ export const loader = async ({ params }) => {
   if (!event) {
     throw new Response("Not Found", { status: 404 })
   }
+
   return json({ event })
 }
 
-export const action = async ({ request }) => {
+export const action = async ({ params, request }) => {
+  const userId = await requireUserId(request);
+  const event = await getEvent({ id: params.eventId });
+  if (!event) {
+    throw new Response("Event not found", { status: 404 });
+  }
+
   const formData = await request.formData();
-  const comment = formData.get("comment")
-  console.log(comment)
-  return json({})
+  const content = formData.get("comment");
+  if (!content) {
+    throw new Response("Comment content is required", { status: 400 });
+  }
+
+  const comment = await createComment({ content, userId, eventId: event.id });
+  return json({ comment });
 };
+
 
 export default function EventDetailsPage() {
   const data = useLoaderData()
@@ -51,16 +64,16 @@ export default function EventDetailsPage() {
         {data.event.agenda ? 
           <ul id="agenda" className="border border-zinc-500 p-10 m-10">
             <h3>Agenda For The Event</h3>
-            {data.event.agenda.map((agendaItem)=>
+            {data.event.agenda.map((agendaItem)=> (
               <li key={agendaItem.id}>
                 {agendaItem.title}
               </li>
-            )}
+            ))}
           </ul>
         :
-        null
-  }
-     <EventFeedComponent /> 
+        <p>No Comments Yet. Leave one below.</p>
+        }
+     <EventFeedComponent comments={data.event.comments}/> 
     </main>
   )
 }

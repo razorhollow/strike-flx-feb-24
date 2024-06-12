@@ -10,6 +10,7 @@ generator client {
 model User {
   id    String @id @default(cuid())
   email String @unique
+  name  String
   isActive Boolean @default(false)
   isAdmin Boolean @default(false)
   isNew Boolean @default(true)
@@ -19,6 +20,7 @@ model User {
 
   password Password?
   notes    Note[]
+  comments  Comment[]
 }
 
 model Password {
@@ -71,10 +73,11 @@ model AgendaItem {
 
 model Comment {
   id      String     @id @default(cuid())
-  name    String
   content String
   eventId String
   event   Event   @relation(fields: [eventId], references: [id])
+  authorId  String 
+  author  User@relation(fields: [authorId], references: [id])
 }
 
 model Location {

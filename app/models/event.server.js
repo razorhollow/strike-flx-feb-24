@@ -16,7 +16,11 @@ export function getEvent({ id }) {
     include: {
       location: true,
       agenda: true,
-      comments: true,
+      comments: {
+        include: {
+          author: true,
+        }
+      },
     },
   });
 }
@@ -52,4 +56,32 @@ export function createLocation({ name, address }) {
   return prisma.location.create({
     data: { name, address },
   });
+}
+
+export function createComment({
+  content,
+  userId,
+  eventId
+}) {
+  return prisma.comment.create({
+    data: {
+      content,
+      event: {
+        connect: {
+          id: eventId,
+        }
+      },
+      author: {
+        connect: {
+          id: userId,
+        },
+      },
+    },
+  });
+}
+
+export function getAllComments({eventId}) {
+  return prisma.comment.findMany() ({
+    where: { eventId }
+  })
 }
