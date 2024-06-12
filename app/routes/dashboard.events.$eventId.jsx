@@ -4,6 +4,7 @@ import invariant from "tiny-invariant"
 import { MapPinIcon, CalendarIcon } from "@heroicons/react/20/solid"
 import dayjs from "dayjs"
 
+import EventFeedComponent from "../components/EventFeed"
 import { getEvent } from "../models/event.server"
 
 export const loader = async ({ params }) => {
@@ -16,9 +17,15 @@ export const loader = async ({ params }) => {
   return json({ event })
 }
 
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const comment = formData.get("comment")
+  console.log(comment)
+  return json({})
+};
+
 export default function EventDetailsPage() {
   const data = useLoaderData()
-  console.log(data)
   const eventDate = dayjs(data.event.date).format('MMMM DD,[ ]YYYY')
   const startTime = dayjs(data.event.startTime).format('h:mm A')
   const endTime = dayjs(data.event.endTime).format('h:mm A')
@@ -53,7 +60,7 @@ export default function EventDetailsPage() {
         :
         null
   }
-      
+     <EventFeedComponent /> 
     </main>
   )
 }
