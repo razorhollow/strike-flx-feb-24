@@ -55,9 +55,9 @@ export default function AddEvent() {
   const [isAddingNewLocation, setIsAddingNewLocation] = useState(false);
 
   return (
-    <div>
+    <div className="flex flex-col content-center items-center w-[80vw] max-w-[500px] mt-10">
       <h1>Add Event</h1>
-      <Form method="post">
+      <Form method="post" className="mt-10 grid grid-cols-1 gap-y-8 px-10">
         {actionData?.error ? <p style={{ color: "red" }}>{actionData.error}</p> : null}
         <div>
           <Input label="Title:" type="text" name="title" />
@@ -72,10 +72,11 @@ export default function AddEvent() {
           <Input label="End Time:" type="time" name="endTime" />
         </div>
         <div>
-          <label>
+          <label className="block text-sm font-medium leading-6 text-gray-900">
             Location:
             <select
               name="locationId"
+              className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
               onChange={(e) => {
                 if (e.target.value === "new") {
                   setIsAddingNewLocation(true);

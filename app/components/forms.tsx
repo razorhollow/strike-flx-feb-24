@@ -10,16 +10,19 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 export function Input({ label, className, ...props }: InputProps) {
   return (
-    <label className="w-full lg:max-w-md">
-      <span className="text-textLight text-sm font-semibold">{label}</span>
-      <input
-        className={clsx(
-          'mt-1 w-full text-text dark:text-darkText text-lg font-semibold bg-background dark:bg-darkBackground py-4 px-2 rounded-lg border border-secondaryAccent dark:border-darkSecondaryAccent',
-          className,
-        )}
-        {...props}
-      />
-    </label>
+    <div className='p-2'>
+      <label className="block text-sm font-medium leading-6 text-gray-900">{label}</label>
+      <div className="mt-2">
+        <input
+          className={clsx(
+            'block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+            className,
+          )}
+          {...props}
+        />
+        </div>
+      </div>
+    
   );
 }
 
@@ -29,16 +32,17 @@ type TextareaProps = InputHTMLAttributes<HTMLTextAreaElement> & {
 
 export function Textarea({ label, className, ...props }: TextareaProps) {
   return (
-    <label className="w-full lg:max-w-md">
-      <span className="text-textLight text-sm font-semibold">{label}</span>
-      <textarea
-        className={clsx(
-          'mt-1 w-full text-text dark:text-darkText text-lg font-semibold bg-background dark:bg-darkBackground py-4 px-2 rounded-lg border border-secondaryAccent dark:border-darkSecondaryAccent',
-          className,
-        )}
-        {...props}
-      />
-    </label>
+    <div>
+    <label className="block text-sm font-medium leading-6 text-gray-900">{label}</label>
+        <textarea
+          className={clsx(
+            'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+            className,
+          )}
+          {...props}
+        />
+      
+    </div>
   );
 }
 

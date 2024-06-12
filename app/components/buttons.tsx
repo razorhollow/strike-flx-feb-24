@@ -14,7 +14,7 @@ export function Button({ isPrimary = false, className, disabled, children, ...pr
     <button
       disabled={disabled}
       className={clsx(
-        'w-full md:w-min whitespace-nowrap',
+        'w-full md:w-min whitespace-nowrap text-gray-200',
         isPrimary ? 'bg-primary dark:bg-darkPrimary' : 'bg-secondary dark:bg-darkSecondary',
         disabled && 'opacity-50',
         isPrimary && !disabled && 'hover:bg-primaryAccent dark:hover:bg-darkPrimaryAccent',
