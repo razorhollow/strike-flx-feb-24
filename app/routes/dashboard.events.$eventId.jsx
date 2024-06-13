@@ -5,8 +5,9 @@ import { MapPinIcon, CalendarIcon } from "@heroicons/react/20/solid"
 import dayjs from "dayjs"
 
 import EventFeedComponent from "../components/EventFeed"
-import { getEvent, createComment, getAllComments } from "../models/event.server"
+import { getEvent, createComment } from "../models/event.server"
 import { requireUserId } from "~/session.server"
+import EventEditButton from "../components/EventEditButton"
 
 export const loader = async ({ params }) => {
   invariant(params.eventId, "Event ID not found")
@@ -74,6 +75,7 @@ export default function EventDetailsPage() {
         <p>No Comments Yet. Leave one below.</p>
         }
      <EventFeedComponent comments={data.event.comments}/> 
+     <EventEditButton event={data.event} />
     </main>
   )
 }

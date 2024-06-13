@@ -80,8 +80,3 @@ export function createComment({
   });
 }
 
-export function getAllComments({eventId}) {
-  return prisma.comment.findMany() ({
-    where: { eventId }
-  })
-}

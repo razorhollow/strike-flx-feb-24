@@ -31,8 +31,8 @@ export default function EventFeedComponent({ comments }) {
           <p>No comments yet. Leave one below</p>
         }
       </div>
-      <fetcher.Form className="flex content-between border border-gray-500 rounded-full p-2 my-3" method="POST">
-        <input required className="w-full h-full focus:outline-none focus:ring-0" type="text" placeholder="Write a comment..." name="comment" ref={inputRef} autoComplete="off" />
+      <fetcher.Form className="flex content-between border border-gray-500 rounded-full p-2 my-3 bg-darkCard" method="POST">
+        <input required className="w-full h-full focus:outline-none focus:ring-0 bg-darkCard/10" type="text" placeholder="Write a comment..." name="comment" ref={inputRef} autoComplete="off" />
         <button disabled={isPosting} type="submit"><PaperAirplaneIcon width={20} className="text-gray-500"/></button>
       </fetcher.Form>
     </div>
