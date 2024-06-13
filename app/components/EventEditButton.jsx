@@ -1,3 +1,4 @@
+import { Form } from '@remix-run/react'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Cross2Icon } from '@radix-ui/react-icons'
 
@@ -63,6 +64,9 @@ export default function EventEditButton({ event }) {
           />
         </fieldset>
         <div className="mt-[25px] flex justify-end">
+          <Form method="POST">
+          <button name='intent' value="delete" type='submit'>Delete Event</button>
+          </Form>
           <Dialog.Close asChild>
             <button className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
               Save changes

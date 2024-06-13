@@ -1,11 +1,11 @@
-import { json } from "@remix-run/node"
+import { json, redirect } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import invariant from "tiny-invariant"
 import { MapPinIcon, CalendarIcon } from "@heroicons/react/20/solid"
 import dayjs from "dayjs"
 
 import EventFeedComponent from "../components/EventFeed"
-import { getEvent, createComment } from "../models/event.server"
+import { getEvent, createComment, deleteEvent } from "../models/event.server"
 import { requireUserId } from "~/session.server"
 import EventEditButton from "../components/EventEditButton"
 
@@ -28,13 +28,28 @@ export const action = async ({ params, request }) => {
   }
 
   const formData = await request.formData();
-  const content = formData.get("comment");
-  if (!content) {
-    throw new Response("Comment content is required", { status: 400 });
-  }
 
-  const comment = await createComment({ content, userId, eventId: event.id });
-  return json({ comment });
+  const intent = formData.get('intent')
+  console.log(`The intent was to ${intent}`)
+  switch (intent) {
+    case 'comment': {
+      const content = formData.get("comment");
+      if (!content) {
+        throw new Response("Comment content is required", { status: 400 });
+      }
+    
+      const comment = await createComment({ content, userId, eventId: event.id });
+      return json({ comment });
+    }
+    case 'delete': {
+      await deleteEvent({ id: params.eventId })
+      console.log('The event to be deleted is: ', params.eventId)
+      return redirect('/dashboard/events')
+    }
+    default: {
+      throw new Response(`Invalid intent: ${intent}`, { status: 400})
+    }
+  }
 };
 
 

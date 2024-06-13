@@ -68,14 +68,14 @@ model AgendaItem {
   id      String     @id @default(cuid())
   title   String
   eventId String
-  event   Event   @relation(fields: [eventId], references: [id])
+  event   Event   @relation(fields: [eventId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Comment {
   id      String     @id @default(cuid())
   content String
   eventId String
-  event   Event   @relation(fields: [eventId], references: [id])
+  event   Event   @relation(fields: [eventId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   authorId  String 
   author  User@relation(fields: [authorId], references: [id])
 }
