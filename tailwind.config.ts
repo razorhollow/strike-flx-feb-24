@@ -20,11 +20,14 @@ export default {
         darkAccent: '#DEBF79',
         darkSecondary: '#444D5A',
         darkSecondaryAccent: '#4C505C',
-        darkBackground: '#222222',
+        darkBackground: '#0d0d0d',
         text: '#222222',
         darkText: '#F5F5F5',
-
-      }
+        darkCard: 'rgba(123, 123, 123, 0.1)'
+      },
+      backgroundImage: {
+        radialDark: "radial-gradient(circle, rgba(28,54,30,1) 1%, rgba(13,13,13,1) 43%)",
+      },
     },
   },
   plugins: []

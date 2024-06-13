@@ -14,7 +14,7 @@ export const loader = async () => {
 export default function Component() {
   const { eventListItems } = useLoaderData()
   return (
-    <div>
+    <div className="w-full text-white">
       <ul>
       {eventListItems.map((event) => (
         <Link to={event.id} key={event.id}>
