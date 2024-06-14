@@ -5,7 +5,7 @@ import { MapPinIcon, CalendarIcon } from "@heroicons/react/20/solid"
 import dayjs from "dayjs"
 
 import EventFeedComponent from "../components/EventFeed"
-import { getEvent, createComment, deleteEvent } from "../models/event.server"
+import { getEvent, createComment, deleteEvent, getAllLocations } from "../models/event.server"
 import { requireUserId } from "~/session.server"
 import EventEditButton from "../components/EventEditButton"
 
@@ -16,8 +16,9 @@ export const loader = async ({ params }) => {
   if (!event) {
     throw new Response("Not Found", { status: 404 })
   }
+  const locations = await getAllLocations()
 
-  return json({ event })
+  return json({ event, locations })
 }
 
 export const action = async ({ params, request }) => {
@@ -90,7 +91,7 @@ export default function EventDetailsPage() {
         <p>No Comments Yet. Leave one below.</p>
         }
      <EventFeedComponent comments={data.event.comments}/> 
-     <EventEditButton event={data.event} />
+     <EventEditButton event={data.event} locations={data.locations} />
     </main>
   )
 }

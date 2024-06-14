@@ -1,11 +1,16 @@
+/* eslint-disable react/prop-types */
 import { Form } from '@remix-run/react'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Cross2Icon } from '@radix-ui/react-icons'
 
-export default function EventEditButton({ event }) {
+import { LocationSelect } from './LocationSelect'
+
+
+export default function EventEditButton({ event, locations }) {
   const date = new Date(event.date).toISOString().slice(0, 10)
   const startTime = new Date(event.startTime).toISOString().slice(11, 16)
   const endTime = new Date(event.endTime).toISOString().slice(11, 16)
+  const agendaString = event.agenda.map(item => item.title).join(', ')
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -21,61 +26,80 @@ export default function EventEditButton({ event }) {
           Make changes to the event here. Click save when you're done.
         </Dialog.Description>
         <fieldset className="mb-[15px] flex items-center gap-5">
-          <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="title">
+          <label className="w-[90px] text-right text-[15px]" htmlFor="title">
             Title
           </label>
           <input
-            className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+            className="shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
             id="title"
             value={event.title}
           />
         </fieldset>
         <fieldset className="mb-[15px] flex items-center gap-5">
-          <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="date">
+          <label className="w-[90px] text-right text-[15px]" htmlFor="date">
             Date
           </label>
           <input
-            className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+            className="shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
             type='date'
             id="date"
             defaultValue={date}
           />
         </fieldset>
         <fieldset className="mb-[15px] flex items-center gap-5">
-          <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="start-time">
-            Start Time
+          <label className="w-[90px] text-right text-[15px]" htmlFor="start-time">
+            Start
           </label>
           <input
-            className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+            className="shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
             type='time'
             id="start-time"
             value={startTime}
           />
         </fieldset>
         <fieldset className="mb-[15px] flex items-center gap-5">
-          <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="end-time">
-            End Time
+          <label className="w-[90px] text-right text-[15px]" htmlFor="end-time">
+            End
           </label>
           <input
-            className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+            className="shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
             type='time'
             id="end-time"
             value={endTime}
           />
         </fieldset>
-        <div className="mt-[25px] flex justify-end">
+        <LocationSelect locations={locations} />
+        <fieldset className="my-[15px] flex items-center gap-5">
+          <label className="w-[90px] text-right text-[15px]" htmlFor="agenda-items">
+            Agenda
+          </label>
+          <textarea
+            className="align-middle pt-2 shadow-violet7 focus:shadow-violet8 inline-flex h-[70px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+            id="agenda-items"
+            value={agendaString}
+            name='agendaItems'
+          />
+        </fieldset>
+        <div className="flex w-full justify-around mt-[15px]">
           <Form method="POST">
-          <button name='intent' value="delete" type='submit'>Delete Event</button>
+          <button 
+            className='bg-red-500 text-white hover:bg-red-600 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none'
+            name='intent' 
+            value="delete" 
+            type='submit'
+          >
+            Delete Event
+          </button>
           </Form>
           <Dialog.Close asChild>
-            <button className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+            <button className="text-green-500 border border-green-500 rounded-lg font-bold hover:bg-green-300 hover:text-black focus:shadow-green-800 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
               Save changes
             </button>
           </Dialog.Close>
         </div>
         <Dialog.Close asChild>
           <button
-            className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
+            className="hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
             aria-label="Close"
           >
             <Cross2Icon />
